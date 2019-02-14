@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <preConditions>
+        <or>
+            <dbms type="oracle"/>
+            <dbms type="mssql"/>
+            <dbms type="sybase"/>
+            <dbms type="db2"/>
+            <dbms type="hsqldb"/>
+            <dbms type="h2"/>
+            <dbms type="postgresql"/>
+        </or>
+    </preConditions>
+
+    <changeSet id="1.01.T_MEAL.CREATE" author="tsuntsov">
+        <preConditions onFail="MARK_RAN"><not><tableExists tableName="T_MEAL"/></not></preConditions>
+        <createTable tableName="T_MEAL" remarks="Блюдо">
+            <column name="F_ID" type="NUMBER(19,0)" remarks="Идентификатор блюда">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_T_MEAL"/>
+            </column>
+            <column name="F_NAME" type="VARCHAR(500)" remarks="Наименование"/>
+            <column name="F_DESCR" type="VARCHAR(1024)" remarks="Описание"/>
+            <column name="F_URL" type="VARCHAR(1024)" remarks="Url блюда"/>
+            <column name="F_PICTURL" type="VARCHAR(1024)" remarks="Url картинки"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.01.T_MEALITEM.CREATE" author="tsuntsov">
+        <preConditions onFail="MARK_RAN"><not><tableExists tableName="T_MEALITEM"/></not></preConditions>
+        <createTable tableName="T_MEALITEM" remarks="Состав блюда">
+            <column name="F_ID" type="NUMBER(19,0)" remarks="Идентификатор">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_T_MEALITEM"/>
+            </column>
+            <column name="F_MEALID" type="NUMBER(19,0)" remarks="ID Блюда"/>
+            <column name="F_ITEMID" type="NUMBER(19,0)" remarks="ID Ингридиента"/>
+            <column name="F_COUNT" type="NUMBER(19,5)" remarks="Количество"/>
+            <column name="F_UNIT" type="VARCHAR(1024)" remarks="Ед. измерения"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.01.T_ITEM.CREATE" author="tsuntsov">
+        <preConditions onFail="MARK_RAN"><not><tableExists tableName="T_ITEM"/></not></preConditions>
+        <createTable tableName="T_ITEM" remarks="Ингридиент">
+            <column name="F_ID" type="NUMBER(19,0)" remarks="Идентификатор">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_T_ITEM"/>
+            </column>
+            <column name="F_NAME" type="VARCHAR(1024)" remarks="Ед. измерения"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.01.T_STEP.CREATE" author="tsuntsov">
+        <preConditions onFail="MARK_RAN"><not><tableExists tableName="T_STEP"/></not></preConditions>
+        <createTable tableName="T_STEP" remarks="Блюдо">
+            <column name="F_ID" type="NUMBER(19,0)" remarks="Идентификатор">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_T_STEP"/>
+            </column>
+            <column name="F_MEALID" type="NUMBER(19,0)" remarks="ID Блюда"/>
+            <column name="F_NAME" type="VARCHAR(500)" remarks="Наименование"/>
+            <column name="F_PICTURL" type="VARCHAR(1024)" remarks="Url картинки"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.01.T_MEALTAG.CREATE" author="tsuntsov">
+        <preConditions onFail="MARK_RAN"><not><tableExists tableName="T_MEALTAG"/></not></preConditions>
+        <createTable tableName="T_MEALTAG" remarks="Теги блюда">
+            <column name="F_ID" type="NUMBER(19,0)" remarks="Идентификатор">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_T_MEALTAG"/>
+            </column>
+            <column name="F_MEALID" type="NUMBER(19,0)" remarks="ID Блюда"/>
+            <column name="F_TAGID" type="NUMBER(19,0)" remarks="ID тега"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.01.T_TAG.CREATE" author="tsuntsov">
+        <preConditions onFail="MARK_RAN"><not><tableExists tableName="T_TAG"/></not></preConditions>
+        <createTable tableName="T_TAG" remarks="Тэг">
+            <column name="F_ID" type="NUMBER(19,0)" remarks="Идентификатор">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_T_TAG"/>
+            </column>
+            <column name="F_NAME" type="VARCHAR(1024)" remarks="Наименование"/>
+        </createTable>
+        <createIndex tableName="T_TAG" indexName="UK1_T_TAG" unique="true">
+            <column name="F_NAME"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>
