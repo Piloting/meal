@@ -1,11 +1,12 @@
-package ru.pilot.aliceMeal.controllers;
+package ru.pilot.meal.controllers;
 
+import org.apache.lucene.morphology.russian.RussianLuceneMorphology;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.pilot.aliceMeal.entity.Component;
-import ru.pilot.aliceMeal.helper.fileParser.ComponentParser;
-import ru.pilot.aliceMeal.repository.ComponentRepo;
+import ru.pilot.meal.entity.ItemMeal;
+import ru.pilot.meal.helper.fileParser.ComponentParser;
+import ru.pilot.meal.repository.ComponentRepo;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -25,21 +26,21 @@ public class ComponentController {
     
     @GetMapping("/initFromFile")
     public String initFromFile() throws IOException, URISyntaxException {
-        ComponentParser componentParser = new ComponentParser();
+        ComponentParser componentParser = new ComponentParser(new RussianLuceneMorphology());
         URL resource = Thread.currentThread().getContextClassLoader().getResource("mealFromSite/compositions.csv");
         Files.lines(Paths.get(resource.toURI()), StandardCharsets.UTF_8).forEach(s -> saveMealToDb(componentParser, s));
         return "Init from file finish";
     }
 
     @GetMapping("/getAll")
-    public Iterable<Component> getAll() {
+    public Iterable<ItemMeal> getAll() {
         return repo.findAll();
     }
 
     private void saveMealToDb(ComponentParser componentParser, String s) {
-        Component component = componentParser.parseComponentFileLine(s);
-        if (component != null){
-            repo.save(component);
+        ItemMeal itemMeal = componentParser.parseComponentFileLine(s);
+        if (itemMeal != null){
+            repo.save(itemMeal);
         }
     }
 

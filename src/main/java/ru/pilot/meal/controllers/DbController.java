@@ -1,9 +1,9 @@
-package ru.pilot.aliceMeal.controllers;
+package ru.pilot.meal.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.pilot.aliceMeal.helper.DbInitaliser;
+import ru.pilot.meal.helper.DbInitaliser;
 
 @RestController
 @RequestMapping("/db")

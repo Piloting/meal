@@ -1,9 +1,9 @@
-package ru.pilot.aliceMeal.helper.fileParser;
+package ru.pilot.meal.helper.fileParser;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.util.StringUtils;
-import ru.pilot.aliceMeal.entity.Meal;
+import ru.pilot.meal.entity.Meal;
 
 import java.util.Arrays;
 import java.util.Iterator;

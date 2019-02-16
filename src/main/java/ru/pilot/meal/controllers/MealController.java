@@ -1,11 +1,11 @@
-package ru.pilot.aliceMeal.controllers;
+package ru.pilot.meal.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.pilot.aliceMeal.entity.Meal;
-import ru.pilot.aliceMeal.helper.fileParser.MealParser;
-import ru.pilot.aliceMeal.repository.MealRepo;
+import ru.pilot.meal.entity.Meal;
+import ru.pilot.meal.helper.fileParser.MealParser;
+import ru.pilot.meal.repository.MealRepo;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

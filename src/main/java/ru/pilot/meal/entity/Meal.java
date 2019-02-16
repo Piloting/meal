@@ -1,4 +1,4 @@
-package ru.pilot.aliceMeal.entity;
+package ru.pilot.meal.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,10 +18,19 @@ public class Meal {
     }
     
     @Id
+    //<column name="F_ID" type="NUMBER(19,0)" remarks="Идентификатор блюда">
     private Long id;
+
+    //<column name="F_URL" type="VARCHAR(1024)" remarks="Url блюда"/>
     private String url;
+
+    //<column name="F_NAME" type="VARCHAR(500)" remarks="Наименование"/>
     private String name;
-    
+
+    //<column name="F_DESCR" type="VARCHAR(1024)" remarks="Описание"/>
     @Column(length = 1024)
     private String descr;
+
+    //<column name="F_URL_PICT" type="VARCHAR(1024)" remarks="Url картинки"/>
+    private String pictUrl;
 }

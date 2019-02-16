@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.pilot</groupId>
-	<artifactId>PilotAliceMeal</artifactId>
+	<artifactId>PilotMeal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>PilotAliceMeal</name>
+	<name>PilotMeal</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -61,6 +61,11 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.2.5</version>
+        </dependency>
+        <dependency>
+			<groupId>org.apache.lucene.analysis</groupId>
+			<artifactId>morphology</artifactId>
+            <version>1.4</version>
         </dependency>
 	</dependencies>
 

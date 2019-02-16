@@ -1,4 +1,4 @@
-package ru.pilot.aliceMeal.entity;
+package ru.pilot.meal.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,8 +14,12 @@ public class TagMeal {
 
     @Id
     @GeneratedValue
+    //<column name="F_ID" type="NUMBER(19,0)" remarks="Идентификатор">
     private Long tagMealId;
-    
+
+    //<column name="F_MEALID" type="NUMBER(19,0)" remarks="ID Блюда"/>
     private Long mealId;
+
+    //<column name="F_TAGID" type="NUMBER(19,0)" remarks="ID тега"/>
     private Long tagId;
 }

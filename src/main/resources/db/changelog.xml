@@ -21,7 +21,7 @@
             <column name="F_NAME" type="VARCHAR(500)" remarks="Наименование"/>
             <column name="F_DESCR" type="VARCHAR(1024)" remarks="Описание"/>
             <column name="F_URL" type="VARCHAR(1024)" remarks="Url блюда"/>
-            <column name="F_PICTURL" type="VARCHAR(1024)" remarks="Url картинки"/>
+            <column name="F_URL_PICT" type="VARCHAR(1024)" remarks="Url картинки"/>
         </createTable>
     </changeSet>
 
@@ -32,20 +32,11 @@
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_T_MEALITEM"/>
             </column>
             <column name="F_MEALID" type="NUMBER(19,0)" remarks="ID Блюда"/>
-            <column name="F_ITEMID" type="NUMBER(19,0)" remarks="ID Ингридиента"/>
-            <column name="F_COUNT" type="NUMBER(19,5)" remarks="Количество"/>
-            <column name="F_UNIT" type="VARCHAR(1024)" remarks="Ед. измерения"/>
+            <column name="F_NAME" type="VARCHAR(1024)" remarks="Ингридиент"/>
         </createTable>
-    </changeSet>
-
-    <changeSet id="1.01.T_ITEM.CREATE" author="tsuntsov">
-        <preConditions onFail="MARK_RAN"><not><tableExists tableName="T_ITEM"/></not></preConditions>
-        <createTable tableName="T_ITEM" remarks="Ингридиент">
-            <column name="F_ID" type="NUMBER(19,0)" remarks="Идентификатор">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_T_ITEM"/>
-            </column>
-            <column name="F_NAME" type="VARCHAR(1024)" remarks="Ед. измерения"/>
-        </createTable>
+        <createIndex tableName="T_MEALITEM" indexName="IND1_T_MEALITEM" unique="false">
+            <column name="F_MEALID"/>
+        </createIndex>
     </changeSet>
 
     <changeSet id="1.01.T_STEP.CREATE" author="tsuntsov">
@@ -58,6 +49,9 @@
             <column name="F_NAME" type="VARCHAR(500)" remarks="Наименование"/>
             <column name="F_PICTURL" type="VARCHAR(1024)" remarks="Url картинки"/>
         </createTable>
+        <createIndex tableName="T_STEP" indexName="IND1_T_STEP" unique="false">
+            <column name="F_MEALID"/>
+        </createIndex>
     </changeSet>
 
     <changeSet id="1.01.T_MEALTAG.CREATE" author="tsuntsov">
@@ -69,6 +63,9 @@
             <column name="F_MEALID" type="NUMBER(19,0)" remarks="ID Блюда"/>
             <column name="F_TAGID" type="NUMBER(19,0)" remarks="ID тега"/>
         </createTable>
+        <createIndex tableName="T_MEALTAG" indexName="IND1_T_MEALTAG" unique="false">
+            <column name="F_TAGID"/>
+        </createIndex>
     </changeSet>
 
     <changeSet id="1.01.T_TAG.CREATE" author="tsuntsov">
@@ -79,7 +76,7 @@
             </column>
             <column name="F_NAME" type="VARCHAR(1024)" remarks="Наименование"/>
         </createTable>
-        <createIndex tableName="T_TAG" indexName="UK1_T_TAG" unique="true">
+        <createIndex tableName="T_TAG" indexName="IND1_U_T_TAG" unique="true">
             <column name="F_NAME"/>
         </createIndex>
     </changeSet>

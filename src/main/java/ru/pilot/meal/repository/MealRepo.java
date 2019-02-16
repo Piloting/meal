@@ -1,7 +1,7 @@
-package ru.pilot.aliceMeal.repository;
+package ru.pilot.meal.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.pilot.aliceMeal.entity.Meal;
+import ru.pilot.meal.entity.Meal;
 
 public interface MealRepo extends CrudRepository<Meal, Long> {
     
