@@ -51,7 +51,7 @@ public class DbInitaliser {
     }
 
     private static void processComponent(String line, ComponentParser componentParser, List<ItemMeal> itemMealList, Set<String> itemList){
-        itemMealList.add(componentParser.newParse(line, itemList));
+        //itemMealList.add(componentParser.newParse(line, itemList));
     }
 
      /*

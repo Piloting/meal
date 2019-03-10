@@ -81,4 +81,17 @@
         </createIndex>
     </changeSet>
 
+    <changeSet id="1.01.meal_seq.CREATE" author="tsuntsov">
+        <preConditions onFail="MARK_RAN"><not><sequenceExists sequenceName="meal_seq"/></not></preConditions>
+        <createSequence sequenceName="meal_seq" minValue="1" incrementBy="100" cycle="false" startValue="1" />
+    </changeSet>
+
+    <changeSet id="1.01.T_MEALTAG.IND_CREATE" author="tsuntsov">
+        <preConditions onFail="MARK_RAN"><not><indexExists tableName="T_MEALTAG" indexName="IND2_T_MEALTAG"/></not></preConditions>
+        <createIndex tableName="T_MEALTAG" indexName="IND2_T_MEALTAG" unique="true">
+            <column name="F_MEALID"/>
+            <column name="F_TAGID"/>
+        </createIndex>
+    </changeSet>
+    
 </databaseChangeLog>

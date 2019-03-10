@@ -21,7 +21,6 @@ public class MealParser {
         Meal meal = new Meal();
         meal.setName(removeDelimiter(doc.title()));
         meal.setUrl(removeDelimiter(doc.baseUri()));
-        meal.setId(Meal.getNextId());
         Element element = doc.select("div.p-summary").first();
         if (element != null){
             meal.setDescr(removeDelimiter(element.text()));
